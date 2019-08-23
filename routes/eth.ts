@@ -17,7 +17,7 @@ const web3 = new Web3('http://127.0.0.1:8545', null, options);
 /* POST request for setting provider. */
 router.post('/setProvider', function (req: Request, res: Response) {
 
-    const provider = req.body.provider;
+    let provider: any = req.body.provider;
 
     web3.eth.setProvider(provider).then((result: boolean) => {
 
