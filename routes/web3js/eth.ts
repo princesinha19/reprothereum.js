@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const Web3 = require('web3');
 import { Request, Response } from 'express';
-import { Transaction, TransactionReceipt, RLPEncodedTransaction, TransactionConfig, Log } from "web3-core";
-import { Syncing, Block, PastLogsOptions } from 'web3-eth';
+import { Transaction, TransactionReceipt, RLPEncodedTransaction, TransactionConfig, Log } from "../../types/web3js/web3-core";
+import { Syncing, Block, PastLogsOptions } from '../../types/web3js/web3-eth';
 
 // Web3 Options
 const options = {

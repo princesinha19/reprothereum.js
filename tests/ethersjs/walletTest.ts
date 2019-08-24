@@ -1,23 +1,17 @@
 import request from 'supertest';
 import app from '../../app';
 
-jest.useFakeTimers();
-
 /**
  * Web3 Eth API Test
  */
 describe('sendTransaction API Test', () => {
-    it('succeeds for correct provider', () => {
-        const provider = '1.2.0';
-        post('/sendTransaction', provider).expect(200);
+    it('succeeds for correct provider', async() => {
+
+        await request(app).post("/sendTransaction").send({
+            web3Version: '1.2.0'
+        })
+        .then((res) => {
+            console.log(res.text);
+        });
     });
 });
-
-// a helper function to make a POST request
-export function post(url: string, body: any) {
-    const httpRequest = request(app).post(url);
-    httpRequest.send(body);
-    httpRequest.set('Accept', 'application/json')
-    httpRequest.set('Origin', 'http://localhost:4000')
-    return httpRequest;
-}
