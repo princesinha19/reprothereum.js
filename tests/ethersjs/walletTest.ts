@@ -1,13 +1,15 @@
 import request from 'supertest';
 import app from '../../app';
 
+jest.useFakeTimers();
+
 /**
  * Web3 Eth API Test
  */
-describe('setProvider API Test', () => {
+describe('sendTransaction API Test', () => {
     it('succeeds for correct provider', () => {
-        const provider = 'http://localhost:8545';
-        post('/web3/eth/setProvider', provider).expect(400);
+        const provider = '1.2.0';
+        post('/sendTransaction', provider).expect(200);
     });
 });
 

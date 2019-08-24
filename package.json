@@ -1,11 +1,12 @@
 {
-  "name": "repro-web3",
+  "name": "reprothereum.js",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "build": "tsc ./routes/index.ts && tsc ./routes/web3/eth.ts",
-    "test": "jest"
+    "test": "jest",
+    "testWithCoverage": "jest --coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,7 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "web3": "^1.0.0-beta.51"
+    "web3": "^1.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",

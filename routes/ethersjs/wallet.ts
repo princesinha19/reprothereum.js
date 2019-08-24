@@ -5,8 +5,8 @@ const ethers = require('ethers');
 import { Request, Response } from 'express';
 import { TransactionResponse, TransactionRequest } from 'ethers/providers/abstract-provider';
 
-/* POST request for setting provider. */
-router.post('/setProvider', function (req: Request, res: Response) {
+/* POST request for sending transaction. */
+router.post('/sendTransaction', function (req: Request, res: Response) {
 
     let privateKey: string = req.body.provider;
     let to = req.body.to;
