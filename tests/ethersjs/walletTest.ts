@@ -2,7 +2,7 @@ import request from 'supertest';
 import app from '../../app';
 
 /**
- * Web3 Eth API Test
+ * Ethersjs Wallet API Test
  */
 describe('createRandomWallet API Test', () => {
     it('succeeds for correct provider', async(done) => {
