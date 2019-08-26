@@ -1,7 +1,7 @@
 // Import modules
 const express = require('express');
 const router = express.Router();
-const Web3 = require('web3');
+const Eth = require('web3-eth');
 import { Request, Response } from 'express';
 import { Transaction, TransactionReceipt, RLPEncodedTransaction, TransactionConfig, Log } from "../../types/web3js/web3-core";
 import { Syncing, Block, PastLogsOptions } from '../../types/web3js/web3-eth';
@@ -12,14 +12,14 @@ const options = {
 };
 
 // Initializing Web3
-const web3 = new Web3('http://127.0.0.1:8545', null, options);
+const eth = new Eth('http://127.0.0.1:8545', null, options);
 
 /* POST request for setting provider. */
 router.post('/setProvider', function (req: Request, res: Response) {
 
     let provider: any = req.body.provider;
 
-    web3.eth.setProvider(provider).then((result: boolean) => {
+    eth.setProvider(provider).then((result: boolean) => {
 
         console.log(result);
 
@@ -39,7 +39,7 @@ router.post('/setProvider', function (req: Request, res: Response) {
 /* GET request for fetching providers. */
 router.get('/providers', function (req: Request, res: Response) {
 
-    web3.eth.providers().then((result: any) => {
+    eth.providers().then((result: any) => {
 
         console.log(result);
 
@@ -59,7 +59,7 @@ router.get('/providers', function (req: Request, res: Response) {
 /* GET request for fetching given provider */
 router.get('/givenProvider', function (req: Request, res: Response) {
 
-    web3.eth.givenProvider().then((result: any) => {
+    eth.givenProvider().then((result: any) => {
 
         console.log(result);
 
@@ -79,7 +79,7 @@ router.get('/givenProvider', function (req: Request, res: Response) {
 /* GET request for fetching current provider */
 router.get('/currentProvider', function (req: Request, res: Response) {
 
-    web3.eth.currentProvider().then((result: any) => {
+    eth.currentProvider().then((result: any) => {
 
         console.log(result);
 
@@ -99,7 +99,7 @@ router.get('/currentProvider', function (req: Request, res: Response) {
 /* GET request for getting default account. */
 router.get('/defaultAccount', function (req: Request, res: Response) {
 
-    web3.eth.defaultAccount().then((result: string | null) => {
+    eth.defaultAccount().then((result: string | null) => {
 
         console.log(result);
 
@@ -119,7 +119,7 @@ router.get('/defaultAccount', function (req: Request, res: Response) {
 /* GET request for getting default block. */
 router.get('/defaultBlock', function (req: Request, res: Response) {
 
-    web3.eth.defaultBlock().then((result: string | null) => {
+    eth.defaultBlock().then((result: string | null) => {
 
         console.log(result);
 
@@ -139,7 +139,7 @@ router.get('/defaultBlock', function (req: Request, res: Response) {
 /* GET request for getting protocol version. */
 router.get('/getProtocolVersion', function (req: Request, res: Response) {
 
-    web3.eth.getProtocolVersion().then((result: string) => {
+    eth.getProtocolVersion().then((result: string) => {
 
         console.log(result);
 
@@ -159,17 +159,15 @@ router.get('/getProtocolVersion', function (req: Request, res: Response) {
 /* GET request for checking, is the blockchain is in syncing state. */
 router.get('/isSyncing', function (req: Request, res: Response) {
 
-    web3.eth.isSyncing().then((result: Syncing | boolean) => {
+    eth.isSyncing().then((result: Syncing | boolean) => {
 
-        console.log(result);
-
-        res.status(200).json({
+        res.status(200).send({
             success: true,
             result: result
         });
     })
     .catch((error: Error) => {
-        res.status(500).json({
+        res.status(500).send({
             success: false,
             result: error.message
         });
@@ -179,17 +177,15 @@ router.get('/isSyncing', function (req: Request, res: Response) {
 /* GET request for getting coinbase address. */
 router.get('/getCoinbase', function (req: Request, res: Response) {
 
-    web3.eth.getCoinbase().then((result: string) => {
+    eth.getCoinbase().then((result: string) => {
 
-        console.log(result);
-
-        res.status(200).json({
+        res.status(200).send({
             success: true,
             result: result
         });
     })
     .catch((error: Error) => {
-        res.status(500).json({
+        res.status(500).send({
             success: false,
             result: error.message
         });
@@ -199,7 +195,7 @@ router.get('/getCoinbase', function (req: Request, res: Response) {
 /* GET request for checking, is the blockchain is in mining state. */
 router.get('/isMining', function (req: Request, res: Response) {
 
-    web3.eth.isMining().then((result: boolean) => {
+    eth.isMining().then((result: boolean) => {
 
         console.log(result);
 
@@ -219,7 +215,7 @@ router.get('/isMining', function (req: Request, res: Response) {
 /* GET request for getting current hash rate. */
 router.get('/getHashrate', function (req: Request, res: Response) {
 
-    web3.eth.getHashrate().then((result: number) => {
+    eth.getHashrate().then((result: number) => {
 
         console.log(result);
 
@@ -239,7 +235,7 @@ router.get('/getHashrate', function (req: Request, res: Response) {
 /* GET request for getting latest gas price. */
 router.get('/getGasPrice', function (req: Request, res: Response) {
 
-    web3.eth.getGasPrice().then((result: string) => {
+    eth.getGasPrice().then((result: string) => {
 
         console.log(result);
 
@@ -259,7 +255,7 @@ router.get('/getGasPrice', function (req: Request, res: Response) {
 /* GET request for getting all the account address. */
 router.get('/getAccounts', function (req: Request, res: Response) {
 
-    web3.eth.getAccounts().then((result: string[]) => {
+    eth.getAccounts().then((result: string[]) => {
 
         console.log(result);
 
@@ -279,7 +275,7 @@ router.get('/getAccounts', function (req: Request, res: Response) {
 /* GET request for getting current block number. */
 router.get('/getBlockNumber', function (req: Request, res: Response) {
 
-    web3.eth.getBlockNumber().then((result: number) => {
+    eth.getBlockNumber().then((result: number) => {
 
         console.log(result);
 
@@ -302,7 +298,7 @@ router.post('/getBalance', function (req: Request, res: Response) {
     let address: string = req.body.address;
     let defaultBlock : string | number = req.body.defaultBlock;
 
-    web3.eth.getBalance(address, defaultBlock).then((result: string) => {
+    eth.getBalance(address, defaultBlock).then((result: string) => {
 
         console.log(result);
 
@@ -325,7 +321,7 @@ router.post('/getStorageAt', function (req: Request, res: Response) {
     let address: string = req.body.address;
     let position: number = req.body.position;
 
-    web3.eth.getStorageAt(address, position).then((result: string) => {
+    eth.getStorageAt(address, position).then((result: string) => {
 
         console.log(result);
 
@@ -348,7 +344,7 @@ router.post('/getCode', function (req: Request, res: Response) {
     let address: string = req.body.address;
     let defaultBlock: number | string = req.body.defaultBlock;
 
-    web3.eth.getCode(address, defaultBlock).then((result: string) => {
+    eth.getCode(address, defaultBlock).then((result: string) => {
 
         console.log(result);
 
@@ -372,7 +368,7 @@ router.post('/getBlock', function (req: Request, res: Response) {
     let blockHash: string = req.body.blockHash;
 
     if (blockNumber != undefined) {
-        web3.eth.getBlock(blockNumber).then((result: Block) => {
+        eth.getBlock(blockNumber).then((result: Block) => {
 
             console.log(result);
 
@@ -390,7 +386,7 @@ router.post('/getBlock', function (req: Request, res: Response) {
     }
 
     if (blockHash != undefined) {
-        web3.eth.getBlock(blockHash).then((result: Block) => {
+        eth.getBlock(blockHash).then((result: Block) => {
 
             console.log(result);
 
@@ -415,7 +411,7 @@ router.post('/getBlockTransactionCount', function (req: Request, res: Response) 
     let blockHash: string = req.body.blockHash;
 
     if (blockNumber != undefined) {
-        web3.eth.getBlockTransactionCount(blockNumber).then((result: number) => {
+        eth.getBlockTransactionCount(blockNumber).then((result: number) => {
 
             console.log(result);
 
@@ -433,7 +429,7 @@ router.post('/getBlockTransactionCount', function (req: Request, res: Response) 
     }
 
     if (blockHash != undefined) {
-        web3.eth.getBlockTransactionCount(blockHash).then((result: number) => {
+        eth.getBlockTransactionCount(blockHash).then((result: number) => {
 
             console.log(result);
 
@@ -459,7 +455,7 @@ router.post('/getUncle', function (req: Request, res: Response) {
     let uncleIndex: number = req.body.uncleIndex;
 
     if (blockNumber != undefined) {
-        web3.eth.getUncle(blockNumber, uncleIndex).then((result: Block) => {
+        eth.getUncle(blockNumber, uncleIndex).then((result: Block) => {
 
             console.log(result);
 
@@ -477,7 +473,7 @@ router.post('/getUncle', function (req: Request, res: Response) {
     }
 
     if (blockHash != undefined) {
-        web3.eth.getUncle(blockHash, uncleIndex).then((result: Block) => {
+        eth.getUncle(blockHash, uncleIndex).then((result: Block) => {
 
             console.log(result);
 
@@ -500,7 +496,7 @@ router.post('/getTransaction', function (req: Request, res: Response) {
 
     let transactionHash: string = req.body.transactionHash;
 
-    web3.eth.getTransaction(transactionHash).then((result: Transaction) => {
+    eth.getTransaction(transactionHash).then((result: Transaction) => {
 
         console.log(result);
 
@@ -523,7 +519,7 @@ router.post('/getTransactionFromBlock', function (req: Request, res: Response) {
     let blockNumber: string | number = req.body.blockNumber;
     let indexNumber: number = req.body.indexNumber;
 
-    web3.eth.getTransactionFromBlock(blockNumber, indexNumber).then((result: Transaction) => {
+    eth.getTransactionFromBlock(blockNumber, indexNumber).then((result: Transaction) => {
 
         console.log(result);
 
@@ -545,7 +541,7 @@ router.post('/getTransactionReceipt', function (req: Request, res: Response) {
 
     let transactionHash: string = req.body.transactionHash;
 
-    web3.eth.getTransactionReceipt(transactionHash).then((result: TransactionReceipt) => {
+    eth.getTransactionReceipt(transactionHash).then((result: TransactionReceipt) => {
 
         console.log(result);
 
@@ -567,7 +563,7 @@ router.post('/getTransactionCount', function (req: Request, res: Response) {
 
     let address: string = req.body.address;
 
-    web3.eth.getTransactionCount(address).then((result: number) => {
+    eth.getTransactionCount(address).then((result: number) => {
 
         console.log(result);
 
@@ -605,7 +601,7 @@ router.post('/sendTransaction', function (req: Request, res: Response) {
         "nonce": nonce
     }
 
-    web3.eth.sendTransaction(transactionObject).then((result: TransactionReceipt) => {
+    eth.sendTransaction(transactionObject).then((result: TransactionReceipt) => {
 
         console.log(result);
 
@@ -627,7 +623,7 @@ router.post('/sendSignedTransaction', function (req: Request, res: Response) {
 
     let signedTransactionData: string = req.body.signedTransactionData;
 
-    web3.eth.sendSignedTransaction(signedTransactionData).then((result: TransactionReceipt) => {
+    eth.sendSignedTransaction(signedTransactionData).then((result: TransactionReceipt) => {
 
         console.log(result);
 
@@ -650,7 +646,7 @@ router.post('/sign', function (req: Request, res: Response) {
     let dataToSign: string = req.body.dataToSign;
     let address: string = req.body.address;
 
-    web3.eth.sign(dataToSign, address).then((result: string) => {
+    eth.sign(dataToSign, address).then((result: string) => {
 
         console.log(result);
 
@@ -689,7 +685,7 @@ router.post('/signTransaction', function (req: Request, res: Response) {
         "nonce": nonce
     }
 
-    web3.eth.signTransaction(transactionObject, address).then((result: RLPEncodedTransaction) => {
+    eth.signTransaction(transactionObject, address).then((result: RLPEncodedTransaction) => {
 
         console.log(result);
 
@@ -728,7 +724,7 @@ router.post('/call', function (req: Request, res: Response) {
         "nonce": nonce
     }
 
-    web3.eth.call(transactionObject, defaultBlock).then((result: string) => {
+    eth.call(transactionObject, defaultBlock).then((result: string) => {
 
         console.log(result);
 
@@ -766,7 +762,7 @@ router.post('/estimateGas', function (req: Request, res: Response) {
         "nonce": nonce
     }
 
-    web3.eth.estimateGas(transactionObject).then((result: number) => {
+    eth.estimateGas(transactionObject).then((result: number) => {
 
         console.log(result);
 
@@ -798,7 +794,7 @@ router.post('/getPastLogs', function (req: Request, res: Response) {
         "topics": topics
     }
 
-    web3.eth.getPastLogs(transactionObject).then((result: Log[]) => {
+    eth.getPastLogs(transactionObject).then((result: Log[]) => {
 
         console.log(result);
 
@@ -818,7 +814,7 @@ router.post('/getPastLogs', function (req: Request, res: Response) {
 /* POST request for getting work for miners to mine on. */
 router.get('/getWork', function (req: Request, res: Response) {
 
-    web3.eth.getWork().then((result: string[]) => {
+    eth.getWork().then((result: string[]) => {
 
         console.log(result);
 
@@ -844,7 +840,7 @@ router.get('/submitWork', function (req: Request, res: Response) {
 
     let data = [nonce, powHash, digest];
 
-    web3.eth.submitWork(data).then((result: boolean) => {
+    eth.submitWork(data).then((result: boolean) => {
 
         console.log(result);
 

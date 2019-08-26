@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "tsc ./routes/index.ts && tsc ./routes/web3/eth.ts",
+    "build": "tsc ./app.ts && tsc ./routes/index.ts && tsc ./routes/web3js/eth.ts && tsc ./routes/ethersjs/wallet.ts",
     "test": "jest",
     "testWithCoverage": "jest --coverage"
   },
