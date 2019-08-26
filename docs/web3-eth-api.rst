@@ -27,8 +27,8 @@ Checks if the node is currently syncing and returns either a syncing object, or 
 Returns
 -------
 
-``success`` - true if the request succeed, otherwise false.
-``result`` - result of `eth syncing <https://web3js.readthedocs.io/en/v1.2.1/web3-eth.html#eth-issyncing-return>`_
+1. ``success`` - true if the request succeed, otherwise false.
+2. ``result`` - result of `eth syncing <https://web3js.readthedocs.io/en/v1.2.1/web3-eth.html#eth-issyncing-return>`_
 
 -------
 Example
@@ -70,8 +70,8 @@ Returns the coinbase address to which mining rewards will go with status.
 Returns
 -------
 
-``success`` - true if the request succeed, otherwise false.
-``result`` - result of `eth syncing <https://web3js.readthedocs.io/en/v1.2.1/web3-eth.html#id20>`_
+1. ``success`` - true if the request succeed, otherwise false.
+2. ``result`` - coinbase address.
 
 -------
 Example
