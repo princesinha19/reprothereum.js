@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "build": "tsc ./app.ts && tsc ./routes/index.ts && tsc ./routes/web3js/eth.ts && tsc ./routes/ethersjs/wallet.ts",
     "test": "jest",
-    "testWithCoverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "clean": "rm -rf node_modules && rm -rf coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
