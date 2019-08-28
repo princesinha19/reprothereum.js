@@ -26,7 +26,7 @@ router.post('/setWeb3Version', function (req: Request, res: Response) {
 
         res.json({
             success: true,
-            result: 'Succesfully Set Web3 Version to ' + web3Version + ' !!'
+            result: 'Succesfully set Web3 version to ' + web3Version + ' !!'
         });
     });
 });
@@ -54,7 +54,7 @@ router.post('/setEthersVersion', function (req: Request, res: Response) {
 
         res.json({
             success: true,
-            result: 'Succesfully Set ethers Version to ' + ethersVersion + ' !!'
+            result: 'Succesfully set Ethers version to ' + ethersVersion + ' !!'
         });
     });
 });
