@@ -1,20 +1,14 @@
+sudo: required
+dist: trusty
 language: node_js
 node_js:
   - "10"
-env:
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
 before_script:
-  - npm install ganache
+  - ganache-cli > /dev/null &
 install:
   - npm install
+  - npm install ganache
 script:
-  - ganache-cli &
   - npm run travis
 after_script:
   - npm run clean
