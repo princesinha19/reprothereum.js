@@ -8,7 +8,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "clean": "rm -rf node_modules && rm -rf coverage",
-    "travis": "npm run build && npm run test:coverage",
+    "travis": "npm run build && npm run test:coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
