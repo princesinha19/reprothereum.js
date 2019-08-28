@@ -1,4 +1,6 @@
 # reprothereum.js
+[![Build Status](https://travis-ci.com/princesinha19/reprothereum.js.svg?branch=master)](https://travis-ci.com/princesinha19/reprothereum.js)
+
 A JavaScript library, to reproduce issues releated to ethereum javsacript libraries.
 
 ## Installation:
