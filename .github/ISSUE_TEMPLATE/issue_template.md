@@ -1,9 +1,6 @@
 ---
 name: issue_template
 about: Issue Template
-title: ''
-labels: ''
-assignees: ''
 
 ---
 
