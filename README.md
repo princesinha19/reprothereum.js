@@ -3,6 +3,9 @@
 
 A JavaScript library, to reproduce issues releated to ethereum javsacript libraries.
 
+# ! Alert
+This repository is under development phase. API's are only available for Eth module of web3.js. So, Any contributions will be appreciated.
+
 ## Installation:
 1. Start a geth node. Run it on the port 8545.
 2. run the command "npm run build".
