@@ -805,3 +805,65 @@ Example
     }
 
 ------------------------------------------------------------------------------
+
+.. _sendTransaction:
+
+web3/eth/sendTransaction
+========================
+
+----
+POST
+----
+
+.. code-block:: javascript
+
+    http://localhost:3000/web3/eth/sendTransaction
+
+Get the numbers of transactions sent from this address.
+Also, returns the success as true if request succesful, otherwise return success as false.
+
+
+----------
+Parameters
+----------
+1. ``from`` (String|Number) - The address for the sending account. Uses the web3.eth.defaultAccount property, if not specified. Or an address or index of a local wallet in web3.eth.accounts.wallet.
+2. ``to`` (String) -  (optional) The destination address of the message, left undefined for a contract-creation transaction.
+3. ``value`` (Number|String|BN|BigNumber) - (optional) The value transferred for the transaction in wei, also the endowment if it’s a contract-creation transaction.
+4. ``gas`` (Number) - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
+5. ``gasPrice (Number|String|BN|BigNumber)`` - (optional) The price of gas for this transaction in wei, defaults to web3.eth.gasPrice.
+6. ``data (String)`` - (optional) Either a ABI byte string containing the data of the function call on a contract, or in the case of a contract-creation transaction the initialisation code.
+7. ``nonce (Number)`` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+
+-------
+Returns
+-------
+
+1. ``success`` - true if the request succeed, otherwise false.
+2. ``result`` - result of `web3.eth.sendTransaction <https://web3js.readthedocs.io/en/v1.2.1/web3-eth.html#eth-gettransactionreceipt-return>`_
+
+-------
+Example
+-------
+
+.. code-block:: javascript
+
+    http://localhost:3000/web3/eth/sendTransaction
+
+    > {
+        success: true,
+        result: {
+            "status": true,
+            "transactionHash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+            "transactionIndex": 0,
+            "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+            "blockNumber": 3,
+            "contractAddress": "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe",
+            "cumulativeGasUsed": 314159,
+            "gasUsed": 30234,
+            "logs": [{
+                    // logs as returned by getPastLogs, etc.
+            }, ...]
+        }
+    }
+
+------------------------------------------------------------------------------
