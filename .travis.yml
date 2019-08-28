@@ -6,11 +6,10 @@ node_js:
   - "12"
 before_script:
   - npm install ganache
-  - ganache-cli -p 8545 > /dev/null &
-  - sleep 5
 install:
   - npm install
 script:
+  - ganache-cli &
   - npm run travis
 after_script:
   - npm run clean
