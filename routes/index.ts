@@ -1,3 +1,16 @@
+/*
+    This file is a part of reprothereum.js.
+    ....
+    ....
+    ....
+    All route will follow prefix "/".
+*/
+/**
+ * @file index.ts
+ * @author Prince Sinha <sinhaprince013@gmail.com>
+ * @date August, 2019
+ */
+
 const express = require('express');
 const router = express.Router();
 const exec = require('child_process').exec;

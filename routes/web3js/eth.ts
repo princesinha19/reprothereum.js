@@ -1,3 +1,16 @@
+/*
+    This file is a part of reprothereum.js.
+    ....
+    ....
+    ....
+    All route will follow prefix "/web3/eth/".
+*/
+/**
+ * @file eth.ts
+ * @author Prince Sinha <sinhaprince013@gmail.com>
+ * @date August, 2019
+ */
+
 // Import modules
 const express = require('express');
 const router = express.Router();
