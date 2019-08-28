@@ -6,7 +6,8 @@ node_js:
   - "12"
 before_script:
   - npm install ganache
-  - ganache-cli
+  - ganache-cli -p 8545 > /dev/null &
+  - sleep 5
 install:
   - npm install
 script:
