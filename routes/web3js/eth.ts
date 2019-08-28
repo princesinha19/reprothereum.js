@@ -562,8 +562,9 @@ router.post('/getTransactionReceipt', function (req: Request, res: Response) {
 router.post('/getTransactionCount', function (req: Request, res: Response) {
 
     let address: string = req.body.address;
+    let defaultBlock: string | number = req.body.defaultBlock;
 
-    eth.getTransactionCount(address).then((result: number) => {
+    eth.getTransactionCount(address, defaultBlock).then((result: number) => {
 
         console.log(result);
 
