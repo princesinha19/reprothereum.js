@@ -3,7 +3,7 @@
 
 A JavaScript library, to reproduce issues releated to ethereum javsacript libraries.
 
-# ! Alert
+# WIP
 This repository is under development phase. API's are only available for Eth module of web3.js. So, Any contributions will be appreciated.
 
 ## Installation:
