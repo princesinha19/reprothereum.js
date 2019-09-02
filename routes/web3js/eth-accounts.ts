@@ -482,3 +482,5 @@ router.post('/wallet/load', function (req: Request, res: Response) {
         });
     });
 });
+
+module.exports = router;
