@@ -8,7 +8,7 @@ jest.useFakeTimers();
  */
 
 describe('Create API Test', () => {
-    it('success for create wallet', async (done) => {
+    it('Success for create wallet', async (done) => {
         let res = await request(app).post("/web3/eth/accounts/create")
         .send({
             entropy: "2435@#@#@±±±±!!!!678543213456764321§34567543213456785432134567"
