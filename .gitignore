@@ -2,3 +2,5 @@ node_modules
 /coverage
 *.swp
 .vscode
+*.js
+!jest.config.js
