@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "tsc ./app.ts && tsc ./routes/index.ts && tsc ./routes/web3js/eth.ts && tsc ./routes/ethersjs/wallet.ts",
+    "build": "tsc ./app.ts && tsc ./routes/index.ts && tsc ./routes/web3js/*.ts && tsc ./routes/ethersjs/*.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "clean": "rm -rf node_modules && rm -rf coverage",
+    "clear": "rm -rf app.js && rm ./routes/index.js && rm ./routes/web3js/*.js && rm ./routes/ethersjs/*.js",
     "travis": "npm run build && npm run test:coverage"
   },
   "dependencies": {

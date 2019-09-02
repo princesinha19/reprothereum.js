@@ -10,6 +10,9 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+branches:
+  only:
+    - master
 before_script:
   - ganache-cli &
 install:
